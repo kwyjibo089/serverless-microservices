@@ -1,0 +1,17 @@
+# Regularly update the token via the RetrieveToken.http script
+@token = eyJhbGciOiJSUzI1NiIsImtpZCI6IjE4ZDRiMmVmOGIxYzE0ODcwOTgzMmI3ZTNkMzNmNzMxIiwidHlwIjoiSldUIn0.eyJuYmYiOjE1NDI2NDQ3NjYsImV4cCI6MTU0MjczMTE2NiwiaXNzIjoiaHR0cHM6Ly90dC1pZGVudGl0eXNlcnZlcjQtZGVtby5henVyZXdlYnNpdGVzLm5ldCIsImF1ZCI6WyJodHRwczovL3R0LWlkZW50aXR5c2VydmVyNC1kZW1vLmF6dXJld2Vic2l0ZXMubmV0L3Jlc291cmNlcyIsImFwaSJdLCJjbGllbnRfaWQiOiJyZXNvdXJjZW93bmVyIiwic3ViIjoiODg0MjExMTMiLCJhdXRoX3RpbWUiOjE1NDI2NDQ3NjYsImlkcCI6ImxvY2FsIiwic2NvcGUiOlsib3BlbmlkIiwicHJvZmlsZSIsImFwaSJdLCJhbXIiOlsicHdkIl19.VT1IWgYr5a4MdshTJCEtD6bY7DSrjQZoGExJWEntP2qE3Z2zcGtOHtjZJoiUc1OVwkA-fWAPGwYRTf6vruyIAJX2jbeFvZtkhGi4CvunPlYgRrPgzgNQUYw5RdsgiqHSsKcl_C6ypI4etJZKEj4diCQfdr7QT-8iXaOwmdVEETpdFM4-C7drMZaUorGwFScbaxvGcWzOyPHcqT9sBkLk2aDQROPeyZ1yCi5uk3SZf49qwl0RnW8WYnM2IIBOJCXOY6dna-_b24QPHRklIvVEkvVJ112NZv8t-FnCT62pj36T8CDs_st_r-qcnk2YPqyjKML2RXwsaOwGJCejy5KqkA
+
+POST http://localhost:7071/api/orders
+#POST https://orders.serverlessmicroservices.net/api/orders
+Content-Type: application/json
+Authorization: Bearer {{ token }}
+
+{
+  "description": "Order for Foo",
+  "items": [
+    {
+      "id": "a5e05e3a-5c7d-4993-bf86-aa22554d91d2",
+      "quantity": 2
+    }
+  ]
+}
