@@ -82,7 +82,7 @@
     "karma-jasmine-html-reporter": "0.2.2",
     "mkdirp": "0.5.1",
     "ncp": "2.0.0",
-    "protractor": "5.1.1",
+    "protractor": "^5.4.1",
     "rimraf": "2.6.1",
     "ts-node": "3.0.2",
     "tslint": "4.5.1",
