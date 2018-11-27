@@ -14,12 +14,15 @@ using Newtonsoft.Json.Linq;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.Azure.KeyVault;
 using Willezone.Azure.WebJobs.Extensions.AzureKeyVault;
+using System.Threading;
+using Nito.AsyncEx;
 
 namespace Serverless
 {
     public static class RecognizeTextFromImage
     {
-        static OcrClient ocrClient;
+        private static AsyncLock mutex = new AsyncLock();
+        private static OcrClient ocrClient;
 
         [FunctionName("RecognizeTextFromImage")]
         public static async Task Run(
@@ -36,17 +39,20 @@ namespace Serverless
         {
             log.LogInformation("RecognizeTextFromImage trigger function processed a request.");
 
-            if(ocrClient == null)
-            {
-                // SEE https://github.com/BorisWilhelms/azure-function-keyvault/issues/1
-                var cognitiveServicesEndpoint = (await keyVaultClient.GetSecretAsync(Environment.GetEnvironmentVariable("KeyVaultUrl") ,"CognitiveServicesEndpoint")).Value;
-                var cognitiveServicesSubscriptionKey = (await keyVaultClient.GetSecretAsync(Environment.GetEnvironmentVariable("KeyVaultUrl") ,"CognitiveServicesSubscriptionKey")).Value;
-                
-                ocrClient = new OcrClient(
-                    cognitiveServicesEndpoint, 
-                    cognitiveServicesSubscriptionKey
-                );
-            }           
+            using (await mutex.LockAsync())
+            {            
+                if (ocrClient == null)
+                {
+                    // SEE https://github.com/BorisWilhelms/azure-function-keyvault/issues/1
+                    var cognitiveServicesEndpoint = (await keyVaultClient.GetSecretAsync(Environment.GetEnvironmentVariable("KeyVaultUrl") ,"CognitiveServicesEndpoint")).Value;
+                    var cognitiveServicesSubscriptionKey = (await keyVaultClient.GetSecretAsync(Environment.GetEnvironmentVariable("KeyVaultUrl") ,"CognitiveServicesSubscriptionKey")).Value;
+                    
+                    ocrClient = new OcrClient(
+                        cognitiveServicesEndpoint, 
+                        cognitiveServicesSubscriptionKey
+                    );
+                }
+            }
 
             var createdEvent = ((JObject)eventGridEvent.Data).ToObject<StorageBlobCreatedEventData>();
 
