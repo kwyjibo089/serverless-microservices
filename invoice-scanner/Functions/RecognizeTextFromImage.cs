@@ -30,7 +30,7 @@ namespace Serverless
             EventGridEvent eventGridEvent,
 
             [Blob("invoice-texts", FileAccess.Read)]
-            CloudBlobContainer blobDirectory,
+            CloudBlobContainer blobContainer,
 
             [AzureKeyVaultClient]
             IKeyVaultClient keyVaultClient,
@@ -63,7 +63,7 @@ namespace Serverless
             var response = result.Lines.Select(l => new { Text = l.Text }).ToList();
 
             var blobName = fileName.Replace("png", "txt");
-            var blob = blobDirectory.GetBlockBlobReference(blobName);
+            var blob = blobContainer.GetBlockBlobReference(blobName);
 
             await blob.UploadTextAsync(JsonConvert.SerializeObject(response));
         }
