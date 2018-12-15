@@ -19,7 +19,7 @@ using Nito.AsyncEx;
 
 namespace Serverless
 {
-    public static class RecognizeTextFromImage
+    public static class RecognizeTextFromImageDocument
     {
         private static AsyncLock mutex = new AsyncLock();
         private static OcrClient ocrClient;
