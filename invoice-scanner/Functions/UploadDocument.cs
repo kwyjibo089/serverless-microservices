@@ -39,7 +39,8 @@ namespace Serverless
                 return new BadRequestResult();
             }
 
-            var blob = blobContainer.GetBlockBlobReference(fileInfo.FileName);
+            var fileName = fileInfo.FileName.Replace("\"", "");
+            var blob = blobContainer.GetBlockBlobReference(fileName);
             await blob.UploadFromStreamAsync(await file.ReadAsStreamAsync());
             
             return new OkResult();
