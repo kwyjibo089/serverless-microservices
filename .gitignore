@@ -331,3 +331,4 @@ ASALocalRun/
 /invoice-scanner/local.settings.json
 /start-function-apps.sh
 /stop-function-apps.sh
+dist
