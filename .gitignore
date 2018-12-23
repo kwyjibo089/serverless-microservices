@@ -332,3 +332,4 @@ ASALocalRun/
 /start-function-apps.sh
 /stop-function-apps.sh
 dist
+.DS_Store
