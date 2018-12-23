@@ -87,7 +87,7 @@ export class PushService {
   private getConnectionInfo(
     hubName: string
   ): Observable<SignalRConnectionInformation> {
-    const requestUrl = `${environment.webApiBaseUrl}config/${hubName}`;
+    const requestUrl = `${environment.ordersApiBaseUrl}config/${hubName}`;
 
     return this._http.get<SignalRConnectionInformation>(requestUrl);
   }

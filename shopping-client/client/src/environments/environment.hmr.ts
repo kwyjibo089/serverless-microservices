@@ -5,7 +5,8 @@ export const environment = {
   hmr: true,
 
   loginRoute: "/login",
-  webApiBaseUrl: "http://localhost:53278/api/"
+  ordersApiBaseUrl: "http://localhost:7071/api/",
+  productsApiBaseUrl: "http://localhost:7073/api/"
 };
 
 export const resourceOwnerConfig: AuthConfig = {

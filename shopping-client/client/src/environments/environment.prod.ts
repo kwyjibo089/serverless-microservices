@@ -5,8 +5,8 @@ export const environment = {
   hmr: false,
 
   loginRoute: "/login",
-  webApiBaseUrl:
-    "https://cw-serverless-microservices-orders.azurewebsites.net/api/"
+  ordersApiBaseUrl: "https://orders.serverlessmicroservices.net/api/",
+  productsApiBaseUrl: "https://products.serverlessmicroservices.net/api/"
 };
 
 export const resourceOwnerConfig: AuthConfig = {
