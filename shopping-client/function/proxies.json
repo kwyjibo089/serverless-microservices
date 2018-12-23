@@ -7,11 +7,11 @@
             },
             "backendUri": "https://localhost/api/letsencrypt/.well-known/acme-challenge/{code}"
         },
-        "api": {
+        "spa": {
             "matchCondition": {
-                "route": "/api/{*restOfPath}"
+                "route": "/{*restOfPath}"
             },
-            "backendUri": "https://localhost/api/{restOfPath}"
+            "backendUri": "https://cwserverlessmsshopping.z6.web.core.windows.net/{restOfPath}"
         }
     }
 }
