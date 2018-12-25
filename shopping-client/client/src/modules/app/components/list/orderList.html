@@ -10,7 +10,12 @@
   </thead>
   <tbody>
     <tr *ngFor="let order of orders">
-      <td width="40%">{{ order.description }} <br><i>{{ order.items[0].name }}</i></td>
+      <td width="40%">
+        <p>{{ order.description }}</p>
+        <ul *ngFor="let item of order.items">
+          <i>{{ order.items[0].name }}</i>
+        </ul>
+      </td>
       <td width="40%">{{ order.created | date: 'dd.MM.yyyy HH:mm' }}</td>
       <td *ngIf="order.shippingCreated"><i class="fa fa-check"></i></td>
       <td *ngIf="!order.shippingCreated"> </td>
