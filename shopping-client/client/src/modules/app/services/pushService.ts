@@ -3,7 +3,7 @@ import { HubConnection, IHttpConnectionOptions } from "@aspnet/signalr";
 import { environment } from "../../../environments/environment";
 import { SignalRConnectionInformation } from "../models/signalRConnectionInformation";
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import * as signalR from "@aspnet/signalr";
 
 @Injectable()
@@ -11,8 +11,8 @@ export class PushService {
   private _ordersHubConnection: HubConnection;
   private _shippingsHubConnection: HubConnection;
 
-  public orderShipping: BehaviorSubject<string> = new BehaviorSubject(null);
-  public orderCreated: BehaviorSubject<string> = new BehaviorSubject(null);
+  public orderShipping: Subject<string> = new Subject();
+  public orderCreated: Subject<string> = new Subject();
 
   constructor(private _http: HttpClient) {}
 
