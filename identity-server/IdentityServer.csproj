@@ -12,6 +12,8 @@
   <ItemGroup>
   <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.0.3" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.5.1" />
     <PackageReference Include="IdentityServer4" Version="2.3.0" />
     <PackageReference Include="Serilog" Version="2.7.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="2.1.1" />
@@ -31,4 +33,13 @@
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
   </ItemGroup>
+
+  <ItemGroup>
+    <FilesToCopy Include="$(OutDir)\TodoApi.xml"/>
+  </ItemGroup>
+  <Target Name="Copy" AfterTargets="Build">
+    <Copy SourceFiles="@(FilesToCopy)"
+          DestinationFolder="$(ProjectDir)..\functions-proxy\$(OutDir)"
+          ContinueOnError="true"/>
+  </Target>
 </Project>
