@@ -35,11 +35,26 @@
   </ItemGroup>
 
   <ItemGroup>
-    <FilesToCopy Include="$(OutDir)\TodoApi.xml"/>
+    <ViewsDll Include="$(TargetDir)*.Views.dll"/>
   </ItemGroup>
   <Target Name="Copy" AfterTargets="Build">
-    <Copy SourceFiles="@(FilesToCopy)"
-          DestinationFolder="$(ProjectDir)..\functions-proxy\$(OutDir)"
-          ContinueOnError="true"/>
+    <Copy SourceFiles="@(ViewsDll)"
+          DestinationFolder="$(TargetDir)bin\" />
+  </Target>
+
+  <ItemGroup>
+    <ViewsPdb Include="$(TargetDir)*.Views.pdb"/>
+  </ItemGroup>
+  <Target Name="Copy" AfterTargets="Build">
+    <Copy SourceFiles="@(ViewsPdb)"
+          DestinationFolder="$(TargetDir)bin\" />
+  </Target>
+
+  <ItemGroup>
+    <_CopyItems Include="$(ProjectDir)wwwroot\**\*.*" />
+  </ItemGroup>
+  <Target Name="Copy" AfterTargets="Build">
+    <Copy SourceFiles="@(_CopyItems)"
+          DestinationFolder="$(TargetDir)bin\wwwroot\%(RecursiveDir)" SkipUnchangedFiles="true" />
   </Target>
 </Project>
