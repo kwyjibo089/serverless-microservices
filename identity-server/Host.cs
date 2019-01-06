@@ -35,6 +35,9 @@ namespace IdentityServer
                 {
                     config
                         .SetBasePath(functionPath)
+                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                        .AddJsonFile($"appsettings.{builderContext.HostingEnvironment.EnvironmentName}.json",
+                            optional: true, reloadOnChange: true)
                         .AddEnvironmentVariables();
                 })
                 .UseStartup<Startup>()
