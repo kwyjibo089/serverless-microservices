@@ -4,9 +4,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "AzureWebJobsDisableHomepage": "true",
         "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-        "AzureWebJobsDashboard": "UseDevelopmentStorage=true",
-        "APPINSIGHTS_INSTRUMENTATIONKEY": ""
+        "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=cwserverlessmsidentity;AccountKey=UA+I8d9EAzcLZbJW6GU2tEmmD3MUVxJ8ZKRzGNq/NfTqLsvT4qsiInwdLPI8KpxhUFAGZut3bi1wfBZSf8aYEg==;EndpointSuffix=core.windows.net"
     },
     "Host": {
         "LocalHttpPort": 7071,
