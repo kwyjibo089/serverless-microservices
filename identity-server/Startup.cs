@@ -19,25 +19,25 @@ namespace IdentityServer
             Environment = environment;
         }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
 
-            var builder = services.AddIdentityServer()
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.GetApis())
-                .AddInMemoryClients(Config.GetClients())
-                .AddTestUsers(Config.GetUsers());
+    var builder = services.AddIdentityServer()
+        .AddInMemoryIdentityResources(Config.GetIdentityResources())
+        .AddInMemoryApiResources(Config.GetApis())
+        .AddInMemoryClients(Config.GetClients())
+        .AddTestUsers(Config.GetUsers());
 
-            if (Environment.IsDevelopment())
-            {
-                builder.AddDeveloperSigningCredential();
-            }
-            else
-            {
-                throw new Exception("need to configure key material");
-            }
-        }
+    if (Environment.IsDevelopment())
+    {
+        builder.AddDeveloperSigningCredential();
+    }
+    else
+    {
+        throw new Exception("need to configure key material");
+    }
+}
 
         public void Configure(IApplicationBuilder app)
         {

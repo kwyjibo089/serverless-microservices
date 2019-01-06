@@ -1,6 +1,7 @@
 {
     "IsEncrypted": false,
     "Values": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
         "AzureWebJobsDisableHomepage": "true",
         "FUNCTIONS_WORKER_RUNTIME": "dotnet",
         "AzureWebJobsStorage": "UseDevelopmentStorage=true",
