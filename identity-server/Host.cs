@@ -28,7 +28,6 @@ namespace IdentityServer
         {
             var functionPath = Path.Combine(new FileInfo(typeof(Host).Assembly.Location).Directory.FullName, "..");
             Environment.SetEnvironmentVariable("HOST_FUNCTION_CONTENT_PATH", functionPath, EnvironmentVariableTarget.Process);
-            //Directory.SetCurrentDirectory(functionPath);
 
             Server = new TestServer(WebHost
                 .CreateDefaultBuilder()
@@ -45,10 +44,6 @@ namespace IdentityServer
             ServerHttpClient = Server.CreateClient();
         }
 
-        /// <summary>
-        /// This trigger covers all routes, except those reserved by Azure Functions and will keep the portal running as expected.
-        /// </summary>
-        /// <returns>HttpResponse built by the WebHost.</returns>
         [FunctionName("AllPaths")]
         public static async Task<HttpResponseMessage> RunAllPaths(
             CancellationToken ct,
@@ -60,12 +55,6 @@ namespace IdentityServer
             return await ServerHttpClient.SendAsync(req, ct);
         }
 
-        /// <summary>
-        /// This trigger covers root route only which isn't caught by the other HttpTrigger.
-        /// In order to have this working, the AppSettings require the following settings:
-        ///    "AzureWebJobsDisableHomepage": "true"
-        /// </summary>
-        /// <returns>HttpResponse built by the WebHost.</returns>
         [FunctionName("Root")]
         public static async Task<HttpResponseMessage> RunRoot(
             CancellationToken ct,

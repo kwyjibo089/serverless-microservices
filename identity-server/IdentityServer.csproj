@@ -34,36 +34,23 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <ViewsDll Include="$(TargetDir)*.Views.dll"/>
-  </ItemGroup>
   <Target Name="CopyDll" AfterTargets="Build">
-    <Copy SourceFiles="@(ViewsDll)"
+    <Copy SourceFiles="$(TargetDir)$(TargetName).Views.dll"
+          DestinationFolder="$(TargetDir)bin\"
+          OverwriteReadOnlyFiles="true" />
+  </Target>
+
+  <Target Name="CopyPdb" AfterTargets="Build">
+    <Copy SourceFiles="$(TargetDir)$(TargetName).Views.pdb"
           DestinationFolder="$(TargetDir)bin\"
           OverwriteReadOnlyFiles="true" />
   </Target>
 
   <ItemGroup>
-    <ViewsPdb Include="$(TargetDir)*.Views.pdb"/>
-  </ItemGroup>
-  <Target Name="CopyPdb" AfterTargets="Build">
-    <Copy SourceFiles="@(ViewsPdb)"
-          DestinationFolder="$(TargetDir)bin\" />
-  </Target>
-
-  <ItemGroup>
-    <_CopyItems Include="$(ProjectDir)wwwroot\**\*.*" />
+    <WwwRoot Include="$(ProjectDir)wwwroot\**\*.*" />
   </ItemGroup>
   <Target Name="CopyWww" AfterTargets="Build">
-    <Copy SourceFiles="@(_CopyItems)"
-          DestinationFolder="$(TargetDir)bin\wwwroot\%(RecursiveDir)" SkipUnchangedFiles="true" />
-  </Target>
-
-  <ItemGroup>
-    <_CopyItems Include="$(ProjectDir)wwwroot\**\*.*" />
-  </ItemGroup>
-  <Target Name="CopyWww" AfterTargets="Build">
-    <Copy SourceFiles="@(_CopyItems)"
+    <Copy SourceFiles="@(WwwRoot)"
           DestinationFolder="$(TargetDir)wwwroot\%(RecursiveDir)" SkipUnchangedFiles="true" />
   </Target>
 </Project>
