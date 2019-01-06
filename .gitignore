@@ -333,3 +333,4 @@ ASALocalRun/
 /stop-function-apps.sh
 dist
 .DS_Store
+local.settings.json
