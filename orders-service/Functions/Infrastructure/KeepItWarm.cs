@@ -9,7 +9,7 @@ namespace Serverless
     {
         [FunctionName("KeepItWarm")]
         public static void Run(
-            [TimerTrigger("0 */9 * * * *")]
+            [TimerTrigger("0 */9 * * * *", RunOnStartup = true)]
             TimerInfo myTimer,
             ILogger log)
         {
