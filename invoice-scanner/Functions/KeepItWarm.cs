@@ -9,8 +9,9 @@ namespace Serverless
     {
         [FunctionName("KeepItWarm")]
         public static void Run(
-            [TimerTrigger("0 */9 * * * *")]
-            TimerInfo timer, ILogger log)
+            [TimerTrigger("0 */9 * * * *", RunOnStartup = true)]
+            TimerInfo timer,
+            ILogger log)
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
         }
