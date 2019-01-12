@@ -23,20 +23,22 @@ namespace Serverless
             [HttpTrigger(AuthorizationLevel.Anonymous, "GET", Route = "orders")]
             HttpRequest req,
 
-            [CosmosDB("ordersservice", "data", ConnectionStringSetting = "CosmosDB")]
-            IEnumerable<NewOrderMessage> ordersdata,
+            IBinder binder,
 
             ILogger log)
         {
             log.LogInformation("GetOrders HTTP trigger function processed a request.");
 
-            // YES, this is way too late in the pipeline - the DB query is already executed :-/
             if (!await req.CheckAuthorization("api"))
             {
                 return new UnauthorizedResult();
             }
 
-            var orders = ordersdata.Select(doc => doc.Order).OrderByDescending(o => o.Created).ToList();
+            var cosmosDb = new CosmosDBAttribute("ordersservice", "data");
+            cosmosDb.ConnectionStringSetting = "CosmosDB";
+ 
+            var ordersData = binder.Bind<IEnumerable<NewOrderMessage>>(cosmosDb);
+            var orders = ordersData.Select(doc => doc.Order).OrderByDescending(o => o.Created).ToList();
 
             return new OkObjectResult(orders);
         }
