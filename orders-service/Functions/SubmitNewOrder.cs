@@ -27,7 +27,6 @@ namespace Serverless
         [FunctionName("SubmitNewOrder")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "POST", Route = "orders")]
-            //DTOs.Order newOrder, // there is a bug with deserialization: https://github.com/Azure/azure-functions-host/issues/3370
             HttpRequest req,
 
             [ServiceBus("neworders", Connection="ServiceBus")]

@@ -38,8 +38,8 @@ public class CreateShipment {
         context.getLogger().info("CreateShipment ServiceBus queue trigger function processed message.");
         context.getLogger().info(msg.Order.Description);
 
-        // NOTE: Look at our complex business logic!
-        // TODO: Yes - do the REAL STUFF here...
+        // NOTE: Look at our complex business logic! :-)
+        // Yes - do the REAL STUFF here...
         Thread.sleep(5000);
 
         ShippingCreatedMessage shippingCreated = new ShippingCreatedMessage();
