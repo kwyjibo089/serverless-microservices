@@ -37,8 +37,8 @@ import { NgProgressHttpModule } from "@ngx-progressbar/http";
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
-    NgProgressModule.forRoot(),
-    NgProgressHttpModule.forRoot(),
+    NgProgressModule,
+    NgProgressHttpModule,
     NgxElectronModule,
     OAuthModule.forRoot()
   ],
