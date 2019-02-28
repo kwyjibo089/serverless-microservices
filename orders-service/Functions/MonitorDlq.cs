@@ -6,10 +6,10 @@ using SendGrid.Helpers.Mail;
 
 namespace Serverless
 {
-    public static class MonitorDlqFunctions
+    public class MonitorDlqFunctions
     {
         [FunctionName("MonitorShippingsInitiatedDlq")]
-        public static void MonitorShippingsInitiatedDlq(
+        public void MonitorShippingsInitiatedDlq(
             [ServiceBusTrigger("shippingsinitiated/$DeadLetterQueue", Connection = "ServiceBus")]
             string queueMessage,
             [SendGrid(ApiKey = "SendGrid")]
@@ -24,7 +24,7 @@ namespace Serverless
         }
 
         [FunctionName("MonitorOrdersForShippingDlq")]
-        public static void MonitorOrdersForShippingDlq(
+        public void MonitorOrdersForShippingDlq(
             [ServiceBusTrigger("ordersforshipping/$DeadLetterQueue", Connection = "ServiceBus")]
             string queueMessage,
             [SendGrid(ApiKey = "SendGrid")]

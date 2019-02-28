@@ -16,10 +16,10 @@ using Serverless.Messages;
 
 namespace Serverless
 {
-    public static class GetOrdersFunctions
+    public class GetOrdersFunctions
     {
         [FunctionName("GetOrders")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "GET", Route = "orders")]
             HttpRequest req,
 

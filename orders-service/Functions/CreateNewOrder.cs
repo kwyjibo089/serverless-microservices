@@ -19,10 +19,10 @@ using Serverless.Messages;
 
 namespace Serverless
 {
-    public static class CreateNewOrderFunctions
+    public class CreateNewOrderFunctions
     {
         [FunctionName("CreateNewOrder")]
-        public static async Task Run(
+        public async Task Run(
             [ServiceBusTrigger("neworders", Connection = "ServiceBus")]
             NewOrderMessage message,
 

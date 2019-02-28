@@ -8,10 +8,10 @@ using Serverless.Messages;
 
 namespace Serverless
 {
-    public static class NotifyClientsAboutOrderShipmentFunctions
+    public class NotifyClientsAboutOrderShipmentFunctions
     {
         [FunctionName("NotifyClientsAboutOrderShipment")]
-        public static async Task Run(
+        public async Task Run(
             [ServiceBusTrigger("shippingsinitiated", Connection = "ServiceBus")]
             /*ShippingCreatedMessage*/ string msg,
 

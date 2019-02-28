@@ -17,7 +17,7 @@ using AutoMapper;
 
 namespace Serverless
 {
-    public static class SubmitNewOrderFunctions
+    public class SubmitNewOrderFunctions
     {
         static SubmitNewOrderFunctions()
         {
@@ -25,7 +25,7 @@ namespace Serverless
         }
 
         [FunctionName("SubmitNewOrder")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "POST", Route = "orders")]
             HttpRequest req,
 
