@@ -3,21 +3,24 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-public static class ModelBinding
+namespace Serverless
 {
-    public static T Deserialize<T>(this HttpRequest request)
+    public static class ModelBinding
     {
-        using (var reader = new StreamReader(request.Body))
-        using (var textReader = new JsonTextReader(reader))
+        public static T Deserialize<T>(this HttpRequest request)
         {
-            request.Body.Seek(0, SeekOrigin.Begin);
-
-            var serializer = JsonSerializer.Create(new JsonSerializerSettings()
+            using (var reader = new StreamReader(request.Body))
+            using (var textReader = new JsonTextReader(reader))
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            });
+                request.Body.Seek(0, SeekOrigin.Begin);
 
-            return serializer.Deserialize<T>(textReader);
+                var serializer = JsonSerializer.Create(new JsonSerializerSettings()
+                {
+                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                });
+
+                return serializer.Deserialize<T>(textReader);
+            }
         }
     }
 }
