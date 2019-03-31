@@ -42,6 +42,7 @@ namespace IdentityServer
                         .AddEnvironmentVariables();
                 })
                 .UseStartup<Startup>()
+                .UseIISIntegration()
                 .UseApplicationInsights()
                 .UseContentRoot(functionPath));
 
