@@ -19,7 +19,7 @@ using ExecutionContext = Microsoft.Azure.WebJobs.ExecutionContext;
 
 namespace IdentityServer
 {
-    // Based on http://www.luckenuik.net/migrate-your-aspnet-core-based-identityserver-inside-azure-functions/
+    // Based on http://www.luckenuik.net/migrate-your-aspnet                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                -core-based-identityserver-inside-azure-functions/
     public static class Host
     {
         private static readonly TestServer Server;
@@ -41,10 +41,9 @@ namespace IdentityServer
                             optional: true, reloadOnChange: true)
                         .AddEnvironmentVariables();
                 })
-                .UseStartup<Startup>()
-                .UseIISIntegration()
                 .UseApplicationInsights()
-                .UseContentRoot(functionPath));
+                .UseContentRoot(functionPath)
+                .UseStartup<Startup>());
 
             ServerHttpClient = Server.CreateClient();
         }
