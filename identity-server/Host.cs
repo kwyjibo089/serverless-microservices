@@ -30,8 +30,7 @@ namespace IdentityServer
             var functionPath = Path.Combine(new FileInfo(typeof(Host).Assembly.Location).Directory.FullName, "..");
             Environment.SetEnvironmentVariable("HOST_FUNCTION_CONTENT_PATH", functionPath, EnvironmentVariableTarget.Process);
 
-            Server = new TestServer(WebHost
-                .CreateDefaultBuilder()
+            Server = new TestServer(new WebHostBuilder()
                 .ConfigureAppConfiguration((builderContext, config) =>
                 {
                     config
